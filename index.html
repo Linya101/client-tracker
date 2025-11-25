@@ -19,9 +19,7 @@
       --shadow: 0 18px 45px rgba(0, 0, 0, 0.75);
     }
 
-    * {
-      box-sizing: border-box;
-    }
+    * { box-sizing: border-box; }
 
     body {
       margin: 0;
@@ -64,7 +62,6 @@
       justify-content: center;
       box-shadow: 0 0 0 1px #000, var(--shadow);
     }
-
     .brand-logo img {
       width: 100%;
       height: 100%;
@@ -88,10 +85,7 @@
       font-size: 12px;
       color: var(--muted);
     }
-
-    .top-meta span {
-      display: block;
-    }
+    .top-meta span { display: block; }
 
     .tag {
       display: inline-flex;
@@ -130,10 +124,7 @@
       align-items: center;
       margin-bottom: 10px;
     }
-
-    .card-title span {
-      color: var(--gold);
-    }
+    .card-title span { color: var(--gold); }
 
     form {
       display: grid;
@@ -150,9 +141,7 @@
       margin-bottom: 3px;
     }
 
-    input,
-    select,
-    textarea {
+    input, select, textarea {
       width: 100%;
       background: var(--bg-soft);
       border-radius: 10px;
@@ -162,31 +151,22 @@
       font-size: 13px;
       outline: none;
     }
-
-    input:focus,
-    select:focus,
-    textarea:focus {
+    input:focus, select:focus, textarea:focus {
       border-color: var(--gold);
       box-shadow: 0 0 0 1px rgba(212, 175, 55, 0.3);
     }
-
     textarea {
       resize: vertical;
       min-height: 52px;
     }
 
-    .full-row {
-      grid-column: 1 / 3;
-    }
+    .full-row { grid-column: 1 / 3; }
 
     .inline {
       display: flex;
       gap: 8px;
     }
-
-    .inline > * {
-      flex: 1;
-    }
+    .inline > * { flex: 1; }
 
     .form-footer {
       grid-column: 1 / 3;
@@ -219,7 +199,6 @@
       text-transform: uppercase;
       letter-spacing: 0.08em;
     }
-
     .btn-secondary {
       background: transparent;
       border-color: var(--gold-soft);
@@ -227,11 +206,7 @@
       padding-inline: 12px;
       font-size: 11px;
     }
-
-    .btn:disabled {
-      opacity: 0.6;
-      cursor: default;
-    }
+    .btn:disabled { opacity: 0.6; cursor: default; }
 
     .search-bar {
       display: flex;
@@ -240,28 +215,19 @@
       align-items: center;
       flex-wrap: wrap;
     }
-
-    .search-bar input {
-      flex: 1;
-    }
-
-    .search-bar select {
-      max-width: 150px;
-    }
+    .search-bar input { flex: 1; }
+    .search-bar select { max-width: 150px; }
 
     table {
       width: 100%;
       border-collapse: collapse;
       font-size: 12px;
     }
-
-    th,
-    td {
+    th, td {
       padding: 6px 6px;
       text-align: left;
       border-bottom: 1px solid var(--border);
     }
-
     th {
       font-size: 11px;
       text-transform: uppercase;
@@ -272,18 +238,11 @@
       top: 0;
       z-index: 1;
     }
-
-    tbody tr:nth-child(even) {
-      background: rgba(15, 23, 42, 0.6);
-    }
-
-    tbody tr:hover {
-      background: rgba(212, 175, 55, 0.04);
-    }
+    tbody tr:nth-child(even) { background: rgba(15, 23, 42, 0.6); }
+    tbody tr:hover { background: rgba(212, 175, 55, 0.04); }
 
     .id-pill {
-      font-family: "SF Mono", ui-monospace, Menlo, Monaco, Consolas, "Liberation Mono",
-        "Courier New", monospace;
+      font-family: ui-monospace, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
       font-size: 11px;
       padding: 2px 6px;
       border-radius: 999px;
@@ -301,7 +260,6 @@
       border: 1px solid rgba(34, 197, 94, 0.4);
       text-transform: uppercase;
     }
-
     .status-pill.pending {
       background: rgba(148, 163, 184, 0.12);
       color: #e5e7eb;
@@ -313,29 +271,23 @@
       gap: 1px;
       cursor: pointer;
     }
-
     .rating span {
       font-size: 13px;
       color: #4b5563;
       transition: transform 0.1s ease, color 0.1s ease;
     }
-
     .rating span.active {
       color: var(--gold);
       transform: translateY(-1px);
     }
 
-    .small {
-      font-size: 11px;
-      color: var(--muted);
-    }
+    .small { font-size: 11px; color: var(--muted); }
 
     .actions {
       display: flex;
       gap: 4px;
       flex-wrap: wrap;
     }
-
     .chip {
       font-size: 10px;
       padding: 2px 6px;
@@ -353,7 +305,6 @@
       font-size: 11px;
       cursor: pointer;
     }
-
     .contacted-toggle.active {
       background: rgba(34, 197, 94, 0.15);
       border-color: rgba(34, 197, 94, 0.7);
@@ -378,7 +329,6 @@
       justify-content: center;
       z-index: 50;
     }
-
     .login-card {
       background: radial-gradient(circle at top, #111827, #020308);
       border-radius: 20px;
@@ -388,7 +338,6 @@
       box-shadow: var(--shadow);
       text-align: center;
     }
-
     .login-logo {
       width: 72px;
       height: 72px;
@@ -401,35 +350,27 @@
       justify-content: center;
       background: radial-gradient(circle at 30% 20%, #facc6b, #8b5a14);
     }
-
     .login-logo img {
       width: 100%;
       height: 100%;
       object-fit: contain;
     }
-
     .login-title {
       font-size: 18px;
       letter-spacing: 0.12em;
       text-transform: uppercase;
       margin-bottom: 4px;
     }
-
     .login-sub {
       font-size: 12px;
       color: var(--muted);
       margin-bottom: 12px;
     }
-
     .login-card label {
       text-align: left;
       margin-bottom: 2px;
     }
-
-    .login-card input {
-      background: var(--bg-soft);
-    }
-
+    .login-card input { background: var(--bg-soft); }
     .login-error {
       font-size: 11px;
       color: var(--danger);
@@ -439,19 +380,11 @@
     }
 
     @media (max-width: 920px) {
-      .layout {
-        grid-template-columns: 1fr;
-      }
+      .layout { grid-template-columns: 1fr; }
     }
-
     @media (max-width: 640px) {
-      header {
-        flex-direction: column;
-        align-items: flex-start;
-      }
-      .top-meta {
-        text-align: left;
-      }
+      header { flex-direction: column; align-items: flex-start; }
+      .top-meta { text-align: left; }
     }
   </style>
 </head>
@@ -460,7 +393,7 @@
   <div class="login-overlay" id="loginOverlay">
     <div class="login-card">
       <div class="login-logo">
-        <!-- Your OG logo file. Make sure og-logo.png is uploaded next to index.html -->
+        <!-- Make sure og-logo.png is uploaded next to index.html -->
         <img src="og-logo.png" alt="OG Logo" />
       </div>
       <div class="login-title">OG 集团</div>
@@ -468,11 +401,11 @@
 
       <div style="text-align:left;margin-bottom:10px;">
         <label for="loginUser">User name</label>
-        <input id="loginUser" type="text" placeholder="ogadmin" />
+        <input id="loginUser" name="loginUser" type="text" placeholder="ogadmin" />
       </div>
       <div style="text-align:left;">
         <label for="loginPass">Password</label>
-        <input id="loginPass" type="password" placeholder="••••••••" />
+        <input id="loginPass" name="loginPass" type="password" placeholder="••••••••" />
       </div>
       <div class="login-error" id="loginError"></div>
       <button class="btn" id="loginBtn" style="width:100%; margin-top:6px;">
@@ -496,7 +429,7 @@
         </div>
       </div>
       <div class="top-meta">
-        <span class="tag">Private · Local only · Encrypted by your browser</span>
+        <span class="tag">Private · Local only · Saved in this browser</span>
         <span id="clientCountMeta">0 clients saved</span>
       </div>
     </header>
@@ -514,17 +447,80 @@
         <form id="clientForm">
           <div>
             <label>Client name</label>
-            <input id="clientName" type="text" required />
+            <input id="clientName" name="clientName" type="text" required />
           </div>
 
           <div>
             <label>Age</label>
-            <input id="clientAge" type="number" min="18" max="120" />
+            <input id="clientAge" name="clientAge" type="number" min="18" max="120" />
+          </div>
+
+          <div>
+            <label>State (USA)</label>
+            <select id="clientState" name="clientState">
+              <option value="">Select…</option>
+              <option>Alabama</option>
+              <option>Alaska</option>
+              <option>Arizona</option>
+              <option>Arkansas</option>
+              <option>California</option>
+              <option>Colorado</option>
+              <option>Connecticut</option>
+              <option>Delaware</option>
+              <option>District of Columbia</option>
+              <option>Florida</option>
+              <option>Georgia</option>
+              <option>Hawaii</option>
+              <option>Idaho</option>
+              <option>Illinois</option>
+              <option>Indiana</option>
+              <option>Iowa</option>
+              <option>Kansas</option>
+              <option>Kentucky</option>
+              <option>Louisiana</option>
+              <option>Maine</option>
+              <option>Maryland</option>
+              <option>Massachusetts</option>
+              <option>Michigan</option>
+              <option>Minnesota</option>
+              <option>Mississippi</option>
+              <option>Missouri</option>
+              <option>Montana</option>
+              <option>Nebraska</option>
+              <option>Nevada</option>
+              <option>New Hampshire</option>
+              <option>New Jersey</option>
+              <option>New Mexico</option>
+              <option>New York</option>
+              <option>North Carolina</option>
+              <option>North Dakota</option>
+              <option>Ohio</option>
+              <option>Oklahoma</option>
+              <option>Oregon</option>
+              <option>Pennsylvania</option>
+              <option>Rhode Island</option>
+              <option>South Carolina</option>
+              <option>South Dakota</option>
+              <option>Tennessee</option>
+              <option>Texas</option>
+              <option>Utah</option>
+              <option>Vermont</option>
+              <option>Virginia</option>
+              <option>Washington</option>
+              <option>West Virginia</option>
+              <option>Wisconsin</option>
+              <option>Wyoming</option>
+            </select>
+          </div>
+
+          <div>
+            <label>City</label>
+            <input id="clientCity" name="clientCity" type="text" placeholder="City in that state" />
           </div>
 
           <div>
             <label>Relationship status</label>
-            <select id="relationshipStatus">
+            <select id="relationshipStatus" name="relationshipStatus">
               <option value="">Select…</option>
               <option>Single</option>
               <option>Married</option>
@@ -537,7 +533,7 @@
 
           <div>
             <label>Looking for</label>
-            <select id="lookingFor">
+            <select id="lookingFor" name="lookingFor">
               <option value="">Select…</option>
               <option>Friend only</option>
               <option>Relationship</option>
@@ -548,7 +544,7 @@
 
           <div>
             <label>Work status</label>
-            <select id="workStatus">
+            <select id="workStatus" name="workStatus">
               <option value="">Select…</option>
               <option value="working">Working</option>
               <option value="retired">Retired</option>
@@ -557,12 +553,12 @@
 
           <div>
             <label id="workStatusLabel">Job / Retired from</label>
-            <input id="jobInfo" type="text" placeholder="Example: IT manager / retired police" />
+            <input id="jobInfo" name="jobInfo" type="text" placeholder="Example: IT manager / retired police" />
           </div>
 
           <div>
             <label>Chat with Asian girl before?</label>
-            <select id="asianExperience">
+            <select id="asianExperience" name="asianExperience">
               <option value="">Select…</option>
               <option value="never">Never</option>
               <option value="yes">Yes, before</option>
@@ -571,28 +567,33 @@
 
           <div>
             <label>Crypto view</label>
-            <input id="cryptoView" type="text" placeholder="Bullish / curious / don’t trust etc." />
+            <input id="cryptoView" name="cryptoView" type="text" placeholder="Bullish / curious / doesn’t trust, etc." />
           </div>
 
           <div class="inline">
             <div>
               <label>Work start time</label>
-              <input id="workStart" type="time" />
+              <input id="workStart" name="workStart" type="time" />
             </div>
             <div>
               <label>Work finish time</label>
-              <input id="workEnd" type="time" />
+              <input id="workEnd" name="workEnd" type="time" />
             </div>
           </div>
 
           <div>
             <label>Hobby / free time</label>
-            <input id="hobbies" type="text" placeholder="Gym, golf, Netflix, travel…" />
+            <input id="hobbies" name="hobbies" type="text" placeholder="Gym, golf, Netflix, travel…" />
+          </div>
+
+          <div>
+            <label>Appearance notes (optional)</label>
+            <input id="appearance" name="appearance" type="text" placeholder="Tall, beard, glasses, etc." />
           </div>
 
           <div>
             <label>Contact app</label>
-            <select id="contactApp">
+            <select id="contactApp" name="contactApp">
               <option value="">Select…</option>
               <option>Telegram</option>
               <option>WhatsApp</option>
@@ -608,12 +609,12 @@
 
           <div>
             <label>Contact ID / link</label>
-            <input id="contactHandle" type="text" placeholder="@username / phone / link" />
+            <input id="contactHandle" name="contactHandle" type="text" placeholder="@username / phone / link" />
           </div>
 
           <div>
             <label>App he came from</label>
-            <select id="sourceApp">
+            <select id="sourceApp" name="sourceApp">
               <option value="">Select…</option>
               <option>Facebook</option>
               <option>TikTok</option>
@@ -629,12 +630,12 @@
 
           <div>
             <label>Photo</label>
-            <input id="photo" type="file" accept="image/*" />
+            <input id="photo" name="photo" type="file" accept="image/*" />
           </div>
 
           <div class="full-row">
             <label>Notes (internal)</label>
-            <textarea id="notes" placeholder="Impression, red flags, money level, family info, etc."></textarea>
+            <textarea id="notes" name="notes" placeholder="Impression, red flags, money level, family info, etc."></textarea>
           </div>
 
           <div class="form-footer">
@@ -659,7 +660,7 @@
           <input
             id="searchInput"
             type="text"
-            placeholder="Search by name, contact, app, hobby, crypto view…"
+            placeholder="Search by name, state, city, contact, app, hobby, crypto view…"
           />
           <select id="filterApp">
             <option value="">All apps</option>
@@ -697,16 +698,14 @@
   </div>
 
   <script>
-    // ----- CONSTANTS -----
-    const STORAGE_KEY = "og_clients_v1";
-    const COUNTER_KEY = "og_client_counter_v1";
+    const STORAGE_KEY = "og_clients_v2";
+    const COUNTER_KEY = "og_client_counter_v2";
     const LOGIN_FLAG = "og_logged_in_v1";
 
     let clients = JSON.parse(localStorage.getItem(STORAGE_KEY) || "[]");
     let counter = parseInt(localStorage.getItem(COUNTER_KEY) || "0", 10);
     let editingId = null;
 
-    // ----- ELEMENTS -----
     const loginOverlay = document.getElementById("loginOverlay");
     const loginUser = document.getElementById("loginUser");
     const loginPass = document.getElementById("loginPass");
@@ -725,7 +724,6 @@
     const workStatusLabel = document.getElementById("workStatusLabel");
     const photoInput = document.getElementById("photo");
 
-    // ----- LOGIN LOGIC -----
     function unlockIfLogged() {
       if (localStorage.getItem(LOGIN_FLAG) === "1") {
         loginOverlay.style.display = "none";
@@ -737,7 +735,6 @@
     function handleLogin() {
       const u = loginUser.value.trim();
       const p = loginPass.value.trim();
-      // default credentials
       if (u === "ogadmin" && p === "og2025") {
         localStorage.setItem(LOGIN_FLAG, "1");
         loginError.textContent = "";
@@ -754,7 +751,6 @@
 
     unlockIfLogged();
 
-    // ----- UTILITIES -----
     function saveAll() {
       localStorage.setItem(STORAGE_KEY, JSON.stringify(clients));
       localStorage.setItem(COUNTER_KEY, String(counter));
@@ -786,7 +782,6 @@
         d.toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" });
     }
 
-    // ----- FORM LOGIC -----
     workStatusSelect.addEventListener("change", () => {
       const val = workStatusSelect.value;
       if (val === "retired") {
@@ -811,11 +806,11 @@
 
       const clientData = {
         id: editingId || ++counter,
-        code: editingId
-          ? findClient(editingId).code
-          : formatId(counter),
+        code: editingId ? findClient(editingId).code : formatId(counter),
         name: obj.clientName || "",
         age: obj.clientAge || "",
+        state: obj.clientState || "",
+        city: obj.clientCity || "",
         relationshipStatus: obj.relationshipStatus || "",
         lookingFor: obj.lookingFor || "",
         workStatus: obj.workStatus || "",
@@ -825,6 +820,7 @@
         workStart: obj.workStart || "",
         workEnd: obj.workEnd || "",
         hobbies: obj.hobbies || "",
+        appearance: obj.appearance || "",
         contactApp: obj.contactApp || "",
         contactHandle: obj.contactHandle || "",
         sourceApp: obj.sourceApp || "",
@@ -851,13 +847,10 @@
     function persistClient(clientData) {
       if (editingId) {
         const idx = clients.findIndex((c) => c.id === editingId);
-        if (idx !== -1) {
-          clients[idx] = clientData;
-        }
+        if (idx !== -1) clients[idx] = clientData;
       } else {
         clients.push(clientData);
       }
-
       editingId = null;
       clientForm.reset();
       photoInput.value = "";
@@ -866,7 +859,6 @@
       updateLastSaved();
     }
 
-    // ----- TABLE RENDERING -----
     function renderTable() {
       clientTableBody.innerHTML = "";
       const term = (searchInput.value || "").toLowerCase();
@@ -878,6 +870,10 @@
         .forEach((c) => {
           const textBlob =
             (c.name || "") +
+            " " +
+            (c.state || "") +
+            " " +
+            (c.city || "") +
             " " +
             (c.contactHandle || "") +
             " " +
@@ -891,26 +887,39 @@
 
           const tr = document.createElement("tr");
 
-          // ID
           const tdId = document.createElement("td");
           tdId.innerHTML = `<span class="id-pill">${c.code}</span>`;
           tr.appendChild(tdId);
 
-          // Client
           const tdClient = document.createElement("td");
+          const locationLine =
+            (c.city || "") || (c.state || "")
+              ? `${c.city ? c.city : ""}${c.city && c.state ? ", " : ""}${c.state ? c.state : ""}`
+              : "";
           tdClient.innerHTML = `
             <div>${c.name || "-"}</div>
-            <div class="small">${
-              c.age ? c.age + " yrs" : ""
-            } ${c.relationshipStatus ? " · " + c.relationshipStatus : ""}</div>
+            <div class="small">
+              ${c.age ? c.age + " yrs" : ""}${
+            c.age && (c.relationshipStatus || locationLine) ? " · " : ""
+          }${c.relationshipStatus || ""}${
+            (c.relationshipStatus && locationLine) || (c.age && locationLine) ? " · " : ""
+          }${locationLine}
+            </div>
           `;
           tr.appendChild(tdClient);
 
-          // Profile
           const tdProfile = document.createElement("td");
           const looking = c.lookingFor ? `<span class="chip">${c.lookingFor}</span>` : "";
-          const job = c.jobInfo ? `<div class="small">${c.workStatus || ""} · ${c.jobInfo}</div>` : "";
+          const job =
+            c.jobInfo || c.workStatus
+              ? `<div class="small">${c.workStatus || ""}${
+                  c.jobInfo ? " · " + c.jobInfo : ""
+                }</div>`
+              : "";
           const hobby = c.hobbies ? `<div class="small">Hobby: ${c.hobbies}</div>` : "";
+          const appearance = c.appearance
+            ? `<div class="small">Appearance: ${c.appearance}</div>`
+            : "";
           const crypto = c.cryptoView ? `<div class="small">Crypto: ${c.cryptoView}</div>` : "";
           const asian =
             c.asianExperience === "never"
@@ -918,16 +927,13 @@
               : c.asianExperience === "yes"
               ? `<div class="small">Asia chat: yes</div>`
               : "";
-          tdProfile.innerHTML = `${looking || ""}${job}${hobby}${crypto}${asian}`;
+          tdProfile.innerHTML = `${looking || ""}${job}${hobby}${appearance}${crypto}${asian}`;
           tr.appendChild(tdProfile);
 
-          // Contact
           const tdContact = document.createElement("td");
           const times =
             c.workStart || c.workEnd
-              ? `<div class="small">Time: ${c.workStart || "?"} - ${
-                  c.workEnd || "?"
-                }</div>`
+              ? `<div class="small">Time: ${c.workStart || "?"} - ${c.workEnd || "?"}</div>`
               : "";
           tdContact.innerHTML = `
             <div>${c.contactApp || ""}</div>
@@ -936,12 +942,10 @@
           `;
           tr.appendChild(tdContact);
 
-          // Source app
           const tdSource = document.createElement("td");
           tdSource.textContent = c.sourceApp || "";
           tr.appendChild(tdSource);
 
-          // Contacted
           const tdContacted = document.createElement("td");
           const btnContacted = document.createElement("button");
           btnContacted.className =
@@ -955,7 +959,6 @@
           tdContacted.appendChild(btnContacted);
           tr.appendChild(tdContacted);
 
-          // Rating
           const tdRating = document.createElement("td");
           const ratingDiv = document.createElement("div");
           ratingDiv.className = "rating";
@@ -973,7 +976,6 @@
           tdRating.appendChild(ratingDiv);
           tr.appendChild(tdRating);
 
-          // Actions
           const tdActions = document.createElement("td");
           tdActions.className = "actions";
           const editBtn = document.createElement("button");
@@ -993,7 +995,6 @@
           }
 
           tr.appendChild(tdActions);
-
           clientTableBody.appendChild(tr);
         });
     }
@@ -1005,6 +1006,8 @@
 
       clientForm.clientName.value = c.name || "";
       clientForm.clientAge.value = c.age || "";
+      clientForm.clientState.value = c.state || "";
+      clientForm.clientCity.value = c.city || "";
       clientForm.relationshipStatus.value = c.relationshipStatus || "";
       clientForm.lookingFor.value = c.lookingFor || "";
       clientForm.workStatus.value = c.workStatus || "";
@@ -1015,6 +1018,7 @@
       clientForm.workStart.value = c.workStart || "";
       clientForm.workEnd.value = c.workEnd || "";
       clientForm.hobbies.value = c.hobbies || "";
+      clientForm.appearance.value = c.appearance || "";
       clientForm.contactApp.value = c.contactApp || "";
       clientForm.contactHandle.value = c.contactHandle || "";
       clientForm.sourceApp.value = c.sourceApp || "";
@@ -1023,11 +1027,9 @@
       window.scrollTo({ top: 0, behavior: "smooth" });
     }
 
-    // ----- FILTERS -----
     searchInput.addEventListener("input", renderTable);
     filterApp.addEventListener("change", renderTable);
 
-    // ----- INIT -----
     saveAll();
     renderTable();
     updateLastSaved();
