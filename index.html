@@ -26,7 +26,8 @@
       min-height: 100vh;
       font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
         sans-serif;
-      background: radial-gradient(circle at top, #1f2937 0, #020308 60%);
+      background:
+        radial-gradient(circle at top, #1f2937 0, #020308 60%);
       color: var(--text);
     }
 
@@ -50,19 +51,47 @@
       gap: 14px;
     }
 
-    .brand-logo {
+    /* ==== LOGO FRAME ==== */
+    .logo-frame {
+      position: relative;
+      width: 72px;
+      height: 72px;
+      border-radius: 999px;
+      background:
+        radial-gradient(circle at 20% 10%, #fbe9a7, #d4af37 40%, #3b2a0b 75%);
+      box-shadow:
+        0 0 0 2px #000,
+        0 0 16px rgba(0,0,0,.8),
+        0 0 38px rgba(212,175,55,.45);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: visible;
+    }
+
+    .logo-frame::before {
+      content: "";
+      position: absolute;
+      inset: 6px;
+      border-radius: inherit;
+      border: 1px solid rgba(15,23,42,0.85);
+      box-shadow: inset 0 0 18px rgba(0,0,0,.7);
+    }
+
+    .logo-ring {
+      position: relative;
       width: 56px;
       height: 56px;
       border-radius: 999px;
       overflow: hidden;
-      border: 2px solid var(--gold);
+      border: 2px solid rgba(249,250,251,.1);
       background: radial-gradient(circle at 20% 20%, #facc6b, #8b5a14);
       display: flex;
       align-items: center;
       justify-content: center;
-      box-shadow: 0 0 0 1px #000, var(--shadow);
     }
-    .brand-logo img {
+
+    .logo-ring img {
       width: 100%;
       height: 100%;
       object-fit: contain;
@@ -206,6 +235,10 @@
       padding-inline: 12px;
       font-size: 11px;
     }
+    .btn-small {
+      padding: 4px 10px;
+      font-size: 11px;
+    }
     .btn:disabled { opacity: 0.6; cursor: default; }
 
     .search-bar {
@@ -249,21 +282,6 @@
       background: rgba(15, 23, 42, 0.9);
       border: 1px solid var(--border);
       display: inline-block;
-    }
-
-    .status-pill {
-      font-size: 10px;
-      padding: 2px 6px;
-      border-radius: 999px;
-      background: rgba(34, 197, 94, 0.12);
-      color: #bbf7d0;
-      border: 1px solid rgba(34, 197, 94, 0.4);
-      text-transform: uppercase;
-    }
-    .status-pill.pending {
-      background: rgba(148, 163, 184, 0.12);
-      color: #e5e7eb;
-      border-color: rgba(148, 163, 184, 0.4);
     }
 
     .rating {
@@ -319,42 +337,58 @@
       border: 1px solid var(--border);
     }
 
-    /* Login overlay */
+    /* ==== LOGIN OVERLAY WITH FRAME ==== */
     .login-overlay {
       position: fixed;
       inset: 0;
-      background: radial-gradient(circle at top, #1e293b, #020308 60%);
+      background: radial-gradient(circle at top, #111827, #020308 70%);
       display: flex;
       align-items: center;
       justify-content: center;
       z-index: 50;
     }
     .login-card {
-      background: radial-gradient(circle at top, #111827, #020308);
-      border-radius: 20px;
+      background:
+        radial-gradient(circle at top, #1f2937, #020308 80%);
+      border-radius: 22px;
       padding: 22px 22px 20px;
       width: 320px;
-      border: 1px solid var(--gold-soft);
+      border: 1px solid rgba(212,175,55,0.35);
       box-shadow: var(--shadow);
       text-align: center;
-    }
-    .login-logo {
-      width: 72px;
-      height: 72px;
-      border-radius: 999px;
-      border: 2px solid var(--gold);
-      margin: 0 auto 10px;
+      position: relative;
       overflow: hidden;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      background: radial-gradient(circle at 30% 20%, #facc6b, #8b5a14);
     }
-    .login-logo img {
-      width: 100%;
-      height: 100%;
-      object-fit: contain;
+    .login-card::before {
+      content:"";
+      position:absolute;
+      inset:-1px;
+      border-radius:inherit;
+      background: conic-gradient(
+        from 160deg,
+        rgba(250,204,21,.0),
+        rgba(250,204,21,.4),
+        rgba(251,191,36,.0) 40%,
+        rgba(250,204,21,.0) 70%,
+        rgba(250,204,21,.4),
+        rgba(250,204,21,.0)
+      );
+      opacity:.6;
+      mix-blend-mode: screen;
+      pointer-events:none;
     }
+    .login-inner {
+      position:relative;
+      z-index:1;
+    }
+
+    .login-logo-frame {
+      margin: 0 auto 10px;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+    }
+
     .login-title {
       font-size: 18px;
       letter-spacing: 0.12em;
@@ -379,6 +413,104 @@
       text-align: left;
     }
 
+    /* ==== GOLD CLIENT CARD OVERLAY ==== */
+    .card-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.6);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      z-index: 60;
+      padding: 16px;
+    }
+    .card-overlay-inner {
+      background: #050607;
+      border-radius: 18px;
+      border: 1px solid rgba(212,175,55,0.5);
+      max-width: 420px;
+      width: 100%;
+      padding: 16px;
+      box-shadow: var(--shadow);
+    }
+    .gold-card {
+      background: radial-gradient(circle at top, #1f2937 0, #020308 70%);
+      border-radius: 16px;
+      padding: 14px 14px 12px;
+      border: 1px solid rgba(212,175,55,0.7);
+      color: #f9fafb;
+    }
+    .gold-card-header {
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      margin-bottom:8px;
+    }
+    .gold-card-id {
+      font-family: ui-monospace, Menlo, Monaco, Consolas;
+      font-size: 12px;
+      padding: 2px 8px;
+      border-radius: 999px;
+      border: 1px solid rgba(212,175,55,0.7);
+      background: rgba(0,0,0,0.4);
+    }
+    .gold-card-name {
+      font-size: 18px;
+      font-weight: 600;
+    }
+    .gold-card-sub {
+      font-size: 12px;
+      color: var(--muted);
+    }
+    .gold-mini-logo {
+      width: 40px;
+      height: 40px;
+      border-radius: 999px;
+      background: radial-gradient(circle at 20% 20%, #facc6b, #8b5a14);
+      border: 1px solid rgba(249,250,251,.5);
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      overflow:hidden;
+    }
+    .gold-mini-logo img {
+      width:100%;
+      height:100%;
+      object-fit:contain;
+    }
+    .gold-grid {
+      display:grid;
+      grid-template-columns: repeat(2,minmax(0,1fr));
+      gap:4px 10px;
+      margin-top:6px;
+      font-size:12px;
+    }
+    .gold-label {
+      text-transform:uppercase;
+      letter-spacing:.08em;
+      font-size:10px;
+      color:var(--muted);
+    }
+    .gold-section {
+      margin-top:8px;
+      font-size:12px;
+    }
+    .gold-section-title {
+      font-size:11px;
+      text-transform:uppercase;
+      letter-spacing:.08em;
+      color:var(--muted);
+      margin-bottom:2px;
+    }
+    .card-overlay-actions {
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      margin-top:10px;
+      gap:10px;
+      flex-wrap:wrap;
+    }
+
     @media (max-width: 920px) {
       .layout { grid-template-columns: 1fr; }
     }
@@ -392,27 +524,44 @@
   <!-- LOGIN SCREEN -->
   <div class="login-overlay" id="loginOverlay">
     <div class="login-card">
-      <div class="login-logo">
-        <!-- Make sure og-logo.png is uploaded next to index.html -->
-        <img src="og-logo.png" alt="OG Logo" />
-      </div>
-      <div class="login-title">OG 集团</div>
-      <div class="login-sub">Internal client hub – staff only</div>
+      <div class="login-inner">
+        <div class="login-logo-frame">
+          <div class="logo-frame">
+            <div class="logo-ring">
+              <!-- Make sure og-logo.png is uploaded next to index.html -->
+              <img src="og-logo.png" alt="OG Logo" />
+            </div>
+          </div>
+        </div>
+        <div class="login-title">OG 集团</div>
+        <div class="login-sub">Internal client hub – staff only</div>
 
-      <div style="text-align:left;margin-bottom:10px;">
-        <label for="loginUser">User name</label>
-        <input id="loginUser" name="loginUser" type="text" placeholder="ogadmin" />
+        <div style="text-align:left;margin-bottom:10px;">
+          <label for="loginUser">User name</label>
+          <input id="loginUser" name="loginUser" type="text" placeholder="ogadmin" />
+        </div>
+        <div style="text-align:left;">
+          <label for="loginPass">Password</label>
+          <input id="loginPass" name="loginPass" type="password" placeholder="••••••••" />
+        </div>
+        <div class="login-error" id="loginError"></div>
+        <button class="btn" id="loginBtn" style="width:100%; margin-top:6px;">
+          Enter
+        </button>
+        <div class="small" style="margin-top:8px; opacity:0.7;">
+          Default login: <b>ogadmin / og2025</b>.
+        </div>
       </div>
-      <div style="text-align:left;">
-        <label for="loginPass">Password</label>
-        <input id="loginPass" name="loginPass" type="password" placeholder="••••••••" />
-      </div>
-      <div class="login-error" id="loginError"></div>
-      <button class="btn" id="loginBtn" style="width:100%; margin-top:6px;">
-        Enter
-      </button>
-      <div class="small" style="margin-top:8px; opacity:0.7;">
-        Default login: <b>ogadmin / og2025</b> (you can change this in the code later).
+    </div>
+  </div>
+
+  <!-- GOLD CLIENT CARD OVERLAY -->
+  <div class="card-overlay" id="clientCardOverlay">
+    <div class="card-overlay-inner">
+      <div id="clientCardContainer" class="gold-card"></div>
+      <div class="card-overlay-actions">
+        <button class="btn btn-small" id="printCardBtn">Download / Print card</button>
+        <button class="btn-secondary btn-small" id="closeCardBtn">Close</button>
       </div>
     </div>
   </div>
@@ -420,8 +569,10 @@
   <div class="app-shell" id="appShell" style="opacity:0.1; pointer-events:none;">
     <header>
       <div class="brand">
-        <div class="brand-logo">
-          <img src="og-logo.png" alt="OG Logo" />
+        <div class="logo-frame">
+          <div class="logo-ring">
+            <img src="og-logo.png" alt="OG Logo" />
+          </div>
         </div>
         <div>
           <div class="brand-title">OG 集团</div>
@@ -431,6 +582,9 @@
       <div class="top-meta">
         <span class="tag">Private · Local only · Saved in this browser</span>
         <span id="clientCountMeta">0 clients saved</span>
+        <span>
+          <button id="exportBtn" class="btn-secondary btn-small">Export CSV</button>
+        </span>
       </div>
     </header>
 
@@ -459,57 +613,23 @@
             <label>State (USA)</label>
             <select id="clientState" name="clientState">
               <option value="">Select…</option>
-              <option>Alabama</option>
-              <option>Alaska</option>
-              <option>Arizona</option>
-              <option>Arkansas</option>
-              <option>California</option>
-              <option>Colorado</option>
-              <option>Connecticut</option>
-              <option>Delaware</option>
-              <option>District of Columbia</option>
-              <option>Florida</option>
-              <option>Georgia</option>
-              <option>Hawaii</option>
-              <option>Idaho</option>
-              <option>Illinois</option>
-              <option>Indiana</option>
-              <option>Iowa</option>
-              <option>Kansas</option>
-              <option>Kentucky</option>
-              <option>Louisiana</option>
-              <option>Maine</option>
-              <option>Maryland</option>
-              <option>Massachusetts</option>
-              <option>Michigan</option>
-              <option>Minnesota</option>
-              <option>Mississippi</option>
-              <option>Missouri</option>
-              <option>Montana</option>
-              <option>Nebraska</option>
-              <option>Nevada</option>
-              <option>New Hampshire</option>
-              <option>New Jersey</option>
-              <option>New Mexico</option>
-              <option>New York</option>
-              <option>North Carolina</option>
-              <option>North Dakota</option>
-              <option>Ohio</option>
-              <option>Oklahoma</option>
-              <option>Oregon</option>
-              <option>Pennsylvania</option>
-              <option>Rhode Island</option>
-              <option>South Carolina</option>
-              <option>South Dakota</option>
-              <option>Tennessee</option>
-              <option>Texas</option>
-              <option>Utah</option>
-              <option>Vermont</option>
-              <option>Virginia</option>
-              <option>Washington</option>
-              <option>West Virginia</option>
-              <option>Wisconsin</option>
-              <option>Wyoming</option>
+              <option>Alabama</option><option>Alaska</option><option>Arizona</option>
+              <option>Arkansas</option><option>California</option><option>Colorado</option>
+              <option>Connecticut</option><option>Delaware</option><option>District of Columbia</option>
+              <option>Florida</option><option>Georgia</option><option>Hawaii</option>
+              <option>Idaho</option><option>Illinois</option><option>Indiana</option>
+              <option>Iowa</option><option>Kansas</option><option>Kentucky</option>
+              <option>Louisiana</option><option>Maine</option><option>Maryland</option>
+              <option>Massachusetts</option><option>Michigan</option><option>Minnesota</option>
+              <option>Mississippi</option><option>Missouri</option><option>Montana</option>
+              <option>Nebraska</option><option>Nevada</option><option>New Hampshire</option>
+              <option>New Jersey</option><option>New Mexico</option><option>New York</option>
+              <option>North Carolina</option><option>North Dakota</option><option>Ohio</option>
+              <option>Oklahoma</option><option>Oregon</option><option>Pennsylvania</option>
+              <option>Rhode Island</option><option>South Carolina</option><option>South Dakota</option>
+              <option>Tennessee</option><option>Texas</option><option>Utah</option>
+              <option>Vermont</option><option>Virginia</option><option>Washington</option>
+              <option>West Virginia</option><option>Wisconsin</option><option>Wyoming</option>
             </select>
           </div>
 
@@ -674,6 +794,17 @@
             <option>Bluesky</option>
             <option>Other</option>
           </select>
+          <select id="filterContact">
+            <option value="">All</option>
+            <option value="pending">Pending</option>
+            <option value="contacted">Contacted</option>
+          </select>
+          <select id="filterRating">
+            <option value="">Any rating</option>
+            <option value="3">★ 3+</option>
+            <option value="4">★ 4+</option>
+            <option value="5">★ 5 only</option>
+          </select>
         </div>
 
         <div style="flex:1; overflow:auto; max-height:520px;">
@@ -698,13 +829,14 @@
   </div>
 
   <script>
-    const STORAGE_KEY = "og_clients_v2";
-    const COUNTER_KEY = "og_client_counter_v2";
+    const STORAGE_KEY = "og_clients_v3";
+    const COUNTER_KEY = "og_client_counter_v3";
     const LOGIN_FLAG = "og_logged_in_v1";
 
     let clients = JSON.parse(localStorage.getItem(STORAGE_KEY) || "[]");
     let counter = parseInt(localStorage.getItem(COUNTER_KEY) || "0", 10);
     let editingId = null;
+    let currentCardClient = null;
 
     const loginOverlay = document.getElementById("loginOverlay");
     const loginUser = document.getElementById("loginUser");
@@ -717,12 +849,20 @@
     const clearFormBtn = document.getElementById("clearFormBtn");
     const searchInput = document.getElementById("searchInput");
     const filterApp = document.getElementById("filterApp");
+    const filterContact = document.getElementById("filterContact");
+    const filterRating = document.getElementById("filterRating");
     const clientTableBody = document.getElementById("clientTableBody");
     const clientCountMeta = document.getElementById("clientCountMeta");
     const lastSavedLabel = document.getElementById("lastSavedLabel");
     const workStatusSelect = document.getElementById("workStatus");
     const workStatusLabel = document.getElementById("workStatusLabel");
     const photoInput = document.getElementById("photo");
+    const exportBtn = document.getElementById("exportBtn");
+
+    const cardOverlay = document.getElementById("clientCardOverlay");
+    const cardContainer = document.getElementById("clientCardContainer");
+    const closeCardBtn = document.getElementById("closeCardBtn");
+    const printCardBtn = document.getElementById("printCardBtn");
 
     function unlockIfLogged() {
       if (localStorage.getItem(LOGIN_FLAG) === "1") {
@@ -800,7 +940,6 @@
 
     clientForm.addEventListener("submit", (e) => {
       e.preventDefault();
-
       const formData = new FormData(clientForm);
       const obj = Object.fromEntries(formData.entries());
 
@@ -859,10 +998,144 @@
       updateLastSaved();
     }
 
+    function createCardHTML(c) {
+      const locationLine =
+        (c.city || "") || (c.state || "")
+          ? `${c.city ? c.city : ""}${c.city && c.state ? ", " : ""}${c.state ? c.state : ""}`
+          : "";
+      const ratingStars = "★★★★★".split("").map((s, i) =>
+        `<span style="color:${i < (c.rating || 0) ? '#d4af37' : '#4b5563'};">★</span>`
+      ).join("");
+
+      return `
+        <div class="gold-card-header">
+          <div>
+            <div class="gold-card-name">${c.name || "-"}</div>
+            <div class="gold-card-sub">${locationLine || "United States"}</div>
+          </div>
+          <div class="gold-mini-logo">
+            <img src="og-logo.png" alt="OG" />
+          </div>
+        </div>
+        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:4px;">
+          <div class="gold-card-id">OG-${c.code}</div>
+          <div style="font-size:11px;">Rating: ${ratingStars}</div>
+        </div>
+        <div class="gold-grid">
+          <div>
+            <div class="gold-label">Age</div>
+            <div>${c.age || "-"}</div>
+          </div>
+          <div>
+            <div class="gold-label">Relationship</div>
+            <div>${c.relationshipStatus || "-"}</div>
+          </div>
+          <div>
+            <div class="gold-label">Looking for</div>
+            <div>${c.lookingFor || "-"}</div>
+          </div>
+          <div>
+            <div class="gold-label">Work status</div>
+            <div>${(c.workStatus || "") + (c.jobInfo ? " · " + c.jobInfo : "") || "-"}</div>
+          </div>
+          <div>
+            <div class="gold-label">Crypto view</div>
+            <div>${c.cryptoView || "-"}</div>
+          </div>
+          <div>
+            <div class="gold-label">Asia chat</div>
+            <div>${
+              c.asianExperience === "never" ? "Never" :
+              c.asianExperience === "yes" ? "Yes" : "-"
+            }</div>
+          </div>
+          <div>
+            <div class="gold-label">Work time</div>
+            <div>${(c.workStart || "?") + " - " + (c.workEnd || "?")}</div>
+          </div>
+          <div>
+            <div class="gold-label">Hobby</div>
+            <div>${c.hobbies || "-"}</div>
+          </div>
+        </div>
+        <div class="gold-section">
+          <div class="gold-section-title">Contact</div>
+          <div>${c.contactApp || "-"} · ${c.contactHandle || ""}</div>
+        </div>
+        <div class="gold-section">
+          <div class="gold-section-title">Appearance</div>
+          <div>${c.appearance || "-"}</div>
+        </div>
+        <div class="gold-section">
+          <div class="gold-section-title">Notes</div>
+          <div>${c.notes || "-"}</div>
+        </div>
+      `;
+    }
+
+    function openCard(c) {
+      currentCardClient = c;
+      cardContainer.innerHTML = createCardHTML(c);
+      cardOverlay.style.display = "flex";
+    }
+
+    closeCardBtn.addEventListener("click", () => {
+      cardOverlay.style.display = "none";
+      currentCardClient = null;
+    });
+    cardOverlay.addEventListener("click", (e) => {
+      if (e.target === cardOverlay) {
+        cardOverlay.style.display = "none";
+        currentCardClient = null;
+      }
+    });
+
+    printCardBtn.addEventListener("click", () => {
+      if (!currentCardClient) return;
+      const cardHTML = `
+        <html>
+          <head>
+            <title>OG Card ${currentCardClient.code}</title>
+            <meta charset="UTF-8" />
+            <style>
+              body {
+                margin:0;
+                background:#000;
+                display:flex;
+                align-items:center;
+                justify-content:center;
+                min-height:100vh;
+                font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+                color:#f9fafb;
+              }
+              .gold-card { ${getComputedStyle(cardContainer).cssText || ""} }
+              ${document.querySelector("style").innerHTML}
+            </style>
+          </head>
+          <body>
+            <div class="gold-card">
+              ${createCardHTML(currentCardClient)}
+            </div>
+            <script>
+              window.onload = function(){
+                window.print();
+              };
+            <\/script>
+          </body>
+        </html>
+      `;
+      const w = window.open("", "_blank");
+      w.document.open();
+      w.document.write(cardHTML);
+      w.document.close();
+    });
+
     function renderTable() {
       clientTableBody.innerHTML = "";
       const term = (searchInput.value || "").toLowerCase();
       const appFilter = filterApp.value;
+      const contactFilter = filterContact.value;
+      const ratingFilter = parseInt(filterRating.value || "0", 10);
 
       clients
         .slice()
@@ -884,6 +1157,9 @@
             (c.cryptoView || "");
           if (term && !textBlob.toLowerCase().includes(term)) return;
           if (appFilter && c.sourceApp !== appFilter) return;
+          if (contactFilter === "pending" && c.contacted) return;
+          if (contactFilter === "contacted" && !c.contacted) return;
+          if (ratingFilter && (c.rating || 0) < ratingFilter) return;
 
           const tr = document.createElement("tr");
 
@@ -900,10 +1176,10 @@
             <div>${c.name || "-"}</div>
             <div class="small">
               ${c.age ? c.age + " yrs" : ""}${
-            c.age && (c.relationshipStatus || locationLine) ? " · " : ""
-          }${c.relationshipStatus || ""}${
-            (c.relationshipStatus && locationLine) || (c.age && locationLine) ? " · " : ""
-          }${locationLine}
+                c.age && (c.relationshipStatus || locationLine) ? " · " : ""
+              }${c.relationshipStatus || ""}${
+                (c.relationshipStatus && locationLine) || (c.age && locationLine) ? " · " : ""
+              }${locationLine}
             </div>
           `;
           tr.appendChild(tdClient);
@@ -912,9 +1188,7 @@
           const looking = c.lookingFor ? `<span class="chip">${c.lookingFor}</span>` : "";
           const job =
             c.jobInfo || c.workStatus
-              ? `<div class="small">${c.workStatus || ""}${
-                  c.jobInfo ? " · " + c.jobInfo : ""
-                }</div>`
+              ? `<div class="small">${c.workStatus || ""}${c.jobInfo ? " · " + c.jobInfo : ""}</div>`
               : "";
           const hobby = c.hobbies ? `<div class="small">Hobby: ${c.hobbies}</div>` : "";
           const appearance = c.appearance
@@ -986,6 +1260,12 @@
           });
           tdActions.appendChild(editBtn);
 
+          const cardBtn = document.createElement("button");
+          cardBtn.className = "contacted-toggle";
+          cardBtn.textContent = "Card";
+          cardBtn.addEventListener("click", () => openCard(c));
+          tdActions.appendChild(cardBtn);
+
           if (c.photo) {
             const img = document.createElement("img");
             img.src = c.photo;
@@ -1029,6 +1309,58 @@
 
     searchInput.addEventListener("input", renderTable);
     filterApp.addEventListener("change", renderTable);
+    filterContact.addEventListener("change", renderTable);
+    filterRating.addEventListener("change", renderTable);
+
+    function exportCSV() {
+      if (!clients.length) {
+        alert("No clients to export yet.");
+        return;
+      }
+      const header = [
+        "ID","Code","Name","Age","State","City",
+        "RelationshipStatus","LookingFor","WorkStatus","JobInfo",
+        "AsianExperience","CryptoView","WorkStart","WorkEnd",
+        "Hobbies","Appearance","ContactApp","ContactHandle",
+        "SourceApp","Contacted","Rating","Notes"
+      ];
+      const rows = clients.map(c => [
+        c.id,
+        c.code,
+        `"${(c.name || "").replace(/"/g,'""')}"`,
+        c.age || "",
+        `"${(c.state || "").replace(/"/g,'""')}"`,
+        `"${(c.city || "").replace(/"/g,'""')}"`,
+        `"${(c.relationshipStatus || "").replace(/"/g,'""')}"`,
+        `"${(c.lookingFor || "").replace(/"/g,'""')}"`,
+        `"${(c.workStatus || "").replace(/"/g,'""')}"`,
+        `"${(c.jobInfo || "").replace(/"/g,'""')}"`,
+        c.asianExperience || "",
+        `"${(c.cryptoView || "").replace(/"/g,'""')}"`,
+        c.workStart || "",
+        c.workEnd || "",
+        `"${(c.hobbies || "").replace(/"/g,'""')}"`,
+        `"${(c.appearance || "").replace(/"/g,'""')}"`,
+        c.contactApp || "",
+        `"${(c.contactHandle || "").replace(/"/g,'""')}"`,
+        c.sourceApp || "",
+        c.contacted ? "1" : "0",
+        c.rating || 0,
+        `"${(c.notes || "").replace(/"/g,'""')}"`,
+      ].join(","));
+      const csv = header.join(",") + "\n" + rows.join("\n");
+      const blob = new Blob([csv], {type:"text/csv;charset=utf-8;"});
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement("a");
+      a.href = url;
+      a.download = "og_clients.csv";
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+      URL.revokeObjectURL(url);
+    }
+
+    exportBtn.addEventListener("click", exportCSV);
 
     saveAll();
     renderTable();
