@@ -1,2 +1,793 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>My Client Tracker</title>
+  <style>
+    :root {
+      --bg: #f4f6fb;
+      --card: #ffffff;
+      --text: #222;
+      --accent: #4f46e5;
+      --accent-soft: #e0e7ff;
+      --border: #d4d4d8;
+    }
+    body.dark {
+      --bg: #0b1020;
+      --card: #111827;
+      --text: #f9fafb;
+      --accent: #6366f1;
+      --accent-soft: #1e293b;
+      --border: #1f2937;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      padding: 20px;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background: var(--bg);
+      color: var(--text);
+    }
+
+    .container {
+      max-width: 1120px;
+      margin: 0 auto;
+    }
+
+    header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 20px;
+      gap: 16px;
+    }
+
+    .hero {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+
+    .hero-illustration {
+      width: 64px;
+      height: 64px;
+      border-radius: 24px;
+      background: radial-gradient(circle at 20% 20%, #fbbf24, #f97316);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 12px 24px rgba(15, 23, 42, 0.2);
+      position: relative;
+      overflow: hidden;
+    }
+    .hero-illustration::before {
+      content: "📒";
+      font-size: 34px;
+    }
+    .hero-illustration::after {
+      content: "⭐";
+      position: absolute;
+      right: 6px;
+      top: 6px;
+      font-size: 16px;
+      filter: drop-shadow(0 2px 4px rgba(0,0,0,0.25));
+    }
+
+    h1 {
+      margin: 0;
+      font-size: 24px;
+    }
+    .subtitle {
+      font-size: 13px;
+      opacity: 0.8;
+    }
+
+    .top-actions {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      align-items: flex-end;
+    }
+
+    button, input, select, textarea {
+      font-size: 14px;
+    }
+
+    .btn {
+      border-radius: 999px;
+      border: 1px solid var(--border);
+      background: var(--card);
+      padding: 6px 12px;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      color: var(--text);
+    }
+
+    .btn-primary {
+      background: var(--accent);
+      border-color: var(--accent);
+      color: white;
+    }
+
+    .badge {
+      font-size: 11px;
+      padding: 2px 8px;
+      border-radius: 999px;
+      background: var(--accent-soft);
+      color: var(--accent);
+    }
+
+    .card {
+      background: var(--card);
+      border-radius: 16px;
+      border: 1px solid var(--border);
+      padding: 16px;
+      margin-bottom: 18px;
+      box-shadow: 0 12px 24px rgba(15, 23, 42, 0.08);
+    }
+
+    form {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 10px 20px;
+    }
+
+    label {
+      font-size: 12px;
+      font-weight: 600;
+      margin-bottom: 4px;
+      display: block;
+      letter-spacing: 0.02em;
+      text-transform: uppercase;
+    }
+
+    input, select, textarea {
+      width: 100%;
+      padding: 7px 9px;
+      border-radius: 8px;
+      border: 1px solid var(--border);
+      background: var(--bg);
+      color: var(--text);
+      outline: none;
+    }
+    input:focus, select:focus, textarea:focus {
+      border-color: var(--accent);
+      box-shadow: 0 0 0 1px var(--accent-soft);
+    }
+    textarea {
+      resize: vertical;
+      min-height: 52px;
+    }
+
+    .full-row {
+      grid-column: 1 / 3;
+    }
+
+    .form-footer {
+      grid-column: 1 / 3;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    .hint {
+      font-size: 11px;
+      opacity: 0.75;
+    }
+
+    .search-bar {
+      display: flex;
+      gap: 10px;
+      margin-bottom: 10px;
+      align-items: center;
+    }
+    .search-bar input {
+      flex: 1;
+    }
+    .search-bar select {
+      max-width: 160px;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 8px;
+    }
+    th, td {
+      border-bottom: 1px solid var(--border);
+      padding: 6px 4px;
+      font-size: 12px;
+      vertical-align: top;
+    }
+    th {
+      text-align: left;
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      opacity: 0.7;
+    }
+
+    .small-img {
+      max-width: 68px;
+      max-height: 68px;
+      border-radius: 12px;
+      display: block;
+      object-fit: cover;
+    }
+
+    .pill {
+      display: inline-flex;
+      padding: 2px 6px;
+      border-radius: 999px;
+      font-size: 10px;
+      background: var(--accent-soft);
+      color: var(--accent);
+    }
+
+    .completed-pill {
+      background: #10b98122;
+      color: #059669;
+    }
+
+    .actions {
+      display: flex;
+      gap: 4px;
+      flex-wrap: wrap;
+    }
+    .btn-ghost {
+      border-radius: 999px;
+      border: 1px solid transparent;
+      background: transparent;
+      padding: 2px 6px;
+      font-size: 11px;
+      cursor: pointer;
+      color: var(--accent);
+    }
+    .btn-ghost:hover {
+      border-color: var(--accent-soft);
+      background: var(--accent-soft);
+    }
+
+    .rating-stars {
+      white-space: nowrap;
+      font-size: 12px;
+    }
+
+    .lock-screen {
+      position: fixed;
+      inset: 0;
+      background: radial-gradient(circle at top, rgba(79,70,229,0.35), transparent 60%),
+                  rgba(15,23,42,0.9);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 50;
+    }
+    .lock-card {
+      background: #020617;
+      color: #e5e7eb;
+      padding: 20px;
+      border-radius: 18px;
+      width: 320px;
+      border: 1px solid #1e293b;
+      box-shadow: 0 20px 40px rgba(0,0,0,0.6);
+    }
+    .lock-title {
+      font-size: 18px;
+      margin: 0 0 4px;
+    }
+    .lock-sub {
+      font-size: 12px;
+      opacity: 0.8;
+      margin-bottom: 14px;
+    }
+    .lock-card label {
+      text-transform: none;
+      letter-spacing: 0;
+      font-size: 12px;
+    }
+    .lock-input {
+      background: #020617;
+      border-color: #1e293b;
+      color: #f9fafb;
+    }
+    .lock-btn-row {
+      display: flex;
+      justify-content: space-between;
+      gap: 8px;
+      margin-top: 10px;
+    }
+    .lock-error {
+      font-size: 11px;
+      color: #f97373;
+      margin-top: 6px;
+      min-height: 14px;
+    }
+
+    @media (max-width: 720px) {
+      form {
+        grid-template-columns: 1fr;
+      }
+      .full-row, .form-footer {
+        grid-column: 1 / 2;
+      }
+      header {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+      .top-actions {
+        align-items: flex-start;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Lock screen -->
+  <div id="lockScreen" class="lock-screen" style="display:none;">
+    <div class="lock-card">
+      <h2 class="lock-title">Client Tracker Locked</h2>
+      <p class="lock-sub" id="lockSubtitle">
+        Set a password to protect your list. This is simple protection on this browser only.
+      </p>
+
+      <div id="lockSetup">
+        <label for="newPassword">Create password</label>
+        <input id="newPassword" type="password" class="lock-input" />
+        <label for="confirmPassword" style="margin-top:6px;">Confirm password</label>
+        <input id="confirmPassword" type="password" class="lock-input" />
+        <div class="lock-btn-row">
+          <button class="btn btn-primary" id="savePasswordBtn">Save password</button>
+          <button class="btn" id="skipLockBtn">Skip for now</button>
+        </div>
+      </div>
+
+      <div id="lockUnlock" style="display:none;">
+        <label for="unlockPassword">Enter password</label>
+        <input id="unlockPassword" type="password" class="lock-input" />
+        <div class="lock-btn-row">
+          <button class="btn btn-primary" id="unlockBtn">Unlock</button>
+        </div>
+      </div>
+
+      <div class="lock-error" id="lockError"></div>
+    </div>
+  </div>
+
+  <div class="container" id="mainContent" style="opacity:0.1; pointer-events:none;">
+    <header>
+      <div class="hero">
+        <div class="hero-illustration"></div>
+        <div>
+          <h1>Client Tracker</h1>
+          <div class="subtitle">
+            Note your daily work, tick completed tasks, and rate your clients ⭐
+          </div>
+        </div>
+      </div>
+
+      <div class="top-actions">
+        <button type="button" id="themeToggle" class="btn">
+          🌙 Dark mode
+        </button>
+        <span class="badge">Private · Saved on this device</span>
+      </div>
+    </header>
+
+    <section class="card">
+      <form id="clientForm">
+        <div>
+          <label for="workDate">Date (today)</label>
+          <input type="date" id="workDate" required />
+        </div>
+
+        <div>
+          <label for="sourceApp">App</label>
+          <select id="sourceApp" required>
+            <option value="">Select app</option>
+            <option>Facebook</option>
+            <option>TikTok</option>
+            <option>Instagram</option>
+            <option>Tantan</option>
+            <option>Meeff</option>
+            <option>Paltalk</option>
+            <option>Bingo Live</option>
+            <option>Bluesky</option>
+          </select>
+        </div>
+
+        <div>
+          <label for="clientName">Client name</label>
+          <input type="text" id="clientName" required />
+        </div>
+
+        <div>
+          <label for="clientAge">Age</label>
+          <input type="number" id="clientAge" min="18" max="100" />
+        </div>
+
+        <div>
+          <label for="clientJob">Job</label>
+          <input type="text" id="clientJob" />
+        </div>
+
+        <div>
+          <label for="meetDate">Date I met him</label>
+          <input type="date" id="meetDate" />
+        </div>
+
+        <div>
+          <label for="rating">Rating (1–5 ⭐)</label>
+          <select id="rating">
+            <option value="">–</option>
+            <option value="1">★ (1)</option>
+            <option value="2">★★ (2)</option>
+            <option value="3">★★★ (3)</option>
+            <option value="4">★★★★ (4)</option>
+            <option value="5">★★★★★ (5)</option>
+          </select>
+        </div>
+
+        <div>
+          <label for="completed">Completed today?</label>
+          <input type="checkbox" id="completed" />
+        </div>
+
+        <div class="full-row">
+          <label for="notes">Notes / feelings</label>
+          <textarea id="notes" placeholder="Polite, rich, red flags, topic we talked about..."></textarea>
+        </div>
+
+        <div class="full-row">
+          <label for="photo">Client picture</label>
+          <input type="file" id="photo" accept="image/*" />
+        </div>
+
+        <div class="form-footer">
+          <div class="hint">
+            Tip: you can edit or delete any row later. Photos stay only on this device.
+          </div>
+          <button type="submit" class="btn btn-primary" id="submitBtn">
+            Add to list
+          </button>
+        </div>
+      </form>
+    </section>
+
+    <section class="card">
+      <div class="search-bar">
+        <input type="text" id="searchInput" placeholder="Search by name, app, notes..." />
+        <select id="filterApp">
+          <option value="">All apps</option>
+          <option>Facebook</option>
+          <option>TikTok</option>
+          <option>Instagram</option>
+          <option>Tantan</option>
+          <option>Meeff</option>
+          <option>Paltalk</option>
+          <option>Bingo Live</option>
+          <option>Bluesky</option>
+        </select>
+      </div>
+
+      <table id="clientTable">
+        <thead>
+          <tr>
+            <th>Date</th>
+            <th>App</th>
+            <th>Name</th>
+            <th>Age</th>
+            <th>Job</th>
+            <th>Date met</th>
+            <th>Done</th>
+            <th>Rating</th>
+            <th>Notes</th>
+            <th>Picture</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody></tbody>
+      </table>
+    </section>
+  </div>
+
+  <script>
+    // ---------- BASIC DATA ----------
+    const STORAGE_KEY = "clients_v3";
+    const THEME_KEY = "client_theme";
+    const PASSWORD_KEY = "client_lock_password";
+    let clients = JSON.parse(localStorage.getItem(STORAGE_KEY) || "[]");
+    let editingId = null;
+
+    const form = document.getElementById("clientForm");
+    const tableBody = document.querySelector("#clientTable tbody");
+    const submitBtn = document.getElementById("submitBtn");
+    const workDateInput = document.getElementById("workDate");
+    const photoInput = document.getElementById("photo");
+    const searchInput = document.getElementById("searchInput");
+    const filterApp = document.getElementById("filterApp");
+    const themeToggle = document.getElementById("themeToggle");
+
+    // ---------- LOCK SCREEN ----------
+    const lockScreen = document.getElementById("lockScreen");
+    const mainContent = document.getElementById("mainContent");
+    const lockSetup = document.getElementById("lockSetup");
+    const lockUnlock = document.getElementById("lockUnlock");
+    const lockSubtitle = document.getElementById("lockSubtitle");
+    const lockError = document.getElementById("lockError");
+    const newPassword = document.getElementById("newPassword");
+    const confirmPassword = document.getElementById("confirmPassword");
+    const savePasswordBtn = document.getElementById("savePasswordBtn");
+    const skipLockBtn = document.getElementById("skipLockBtn");
+    const unlockPassword = document.getElementById("unlockPassword");
+    const unlockBtn = document.getElementById("unlockBtn");
+
+    function showMainContent() {
+      lockScreen.style.display = "none";
+      mainContent.style.opacity = "1";
+      mainContent.style.pointerEvents = "auto";
+    }
+
+    function checkLock() {
+      const pwd = localStorage.getItem(PASSWORD_KEY);
+      if (!pwd) {
+        lockScreen.style.display = "flex";
+        lockSetup.style.display = "block";
+        lockUnlock.style.display = "none";
+      } else {
+        lockScreen.style.display = "flex";
+        lockSetup.style.display = "none";
+        lockUnlock.style.display = "block";
+        lockSubtitle.textContent = "Enter your password to open the client list.";
+      }
+    }
+
+    savePasswordBtn.addEventListener("click", () => {
+      lockError.textContent = "";
+      if (!newPassword.value || newPassword.value.length < 4) {
+        lockError.textContent = "Password must be at least 4 characters.";
+        return;
+      }
+      if (newPassword.value !== confirmPassword.value) {
+        lockError.textContent = "Passwords do not match.";
+        return;
+      }
+      localStorage.setItem(PASSWORD_KEY, newPassword.value);
+      newPassword.value = "";
+      confirmPassword.value = "";
+      showMainContent();
+    });
+
+    skipLockBtn.addEventListener("click", () => {
+      showMainContent();
+    });
+
+    unlockBtn.addEventListener("click", () => {
+      lockError.textContent = "";
+      const pwd = localStorage.getItem(PASSWORD_KEY);
+      if (unlockPassword.value === pwd) {
+        unlockPassword.value = "";
+        showMainContent();
+      } else {
+        lockError.textContent = "Wrong password.";
+      }
+    });
+
+    // ---------- THEME ----------
+    function applyTheme(theme) {
+      if (theme === "dark") {
+        document.body.classList.add("dark");
+        themeToggle.textContent = "☀️ Light mode";
+      } else {
+        document.body.classList.remove("dark");
+        themeToggle.textContent = "🌙 Dark mode";
+      }
+    }
+
+    const savedTheme = localStorage.getItem(THEME_KEY) || "light";
+    applyTheme(savedTheme);
+
+    themeToggle.addEventListener("click", () => {
+      const newTheme = document.body.classList.contains("dark") ? "light" : "dark";
+      localStorage.setItem(THEME_KEY, newTheme);
+      applyTheme(newTheme);
+    });
+
+    // ---------- UTIL ----------
+    function saveClients() {
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(clients));
+    }
+
+    function ratingStars(r) {
+      const n = parseInt(r || 0, 10);
+      if (!n) return "";
+      return "★".repeat(n);
+    }
+
+    // ---------- TABLE RENDER ----------
+    function renderTable() {
+      tableBody.innerHTML = "";
+      const term = (searchInput.value || "").toLowerCase();
+      const appFilter = filterApp.value;
+
+      clients.forEach(client => {
+        const text = (
+          (client.clientName || "") + " " +
+          (client.sourceApp || "") + " " +
+          (client.notes || "")
+        ).toLowerCase();
+
+        if (term && !text.includes(term)) return;
+        if (appFilter && client.sourceApp !== appFilter) return;
+
+        const row = document.createElement("tr");
+
+        function cell(value) {
+          const td = document.createElement("td");
+          td.textContent = value || "";
+          return td;
+        }
+
+        row.appendChild(cell(client.workDate));
+        row.appendChild(cell(client.sourceApp));
+
+        const nameTd = cell(client.clientName);
+        if (client.sourceApp) {
+          const pill = document.createElement("span");
+          pill.className = "pill";
+          pill.textContent = client.sourceApp;
+          pill.style.marginLeft = "4px";
+          nameTd.appendChild(document.createElement("br"));
+          nameTd.appendChild(pill);
+        }
+        row.appendChild(nameTd);
+
+        row.appendChild(cell(client.clientAge));
+        row.appendChild(cell(client.clientJob));
+        row.appendChild(cell(client.meetDate));
+
+        const doneTd = document.createElement("td");
+        if (client.completed) {
+          const done = document.createElement("span");
+          done.className = "pill completed-pill";
+          done.textContent = "Done";
+          doneTd.appendChild(done);
+        }
+        row.appendChild(doneTd);
+
+        const ratingTd = document.createElement("td");
+        ratingTd.className = "rating-stars";
+        ratingTd.textContent = ratingStars(client.rating);
+        row.appendChild(ratingTd);
+
+        row.appendChild(cell(client.notes));
+
+        const photoTd = document.createElement("td");
+        if (client.photo) {
+          const img = document.createElement("img");
+          img.src = client.photo;
+          img.className = "small-img";
+          img.alt = "client photo";
+          photoTd.appendChild(img);
+        }
+        row.appendChild(photoTd);
+
+        const actionsTd = document.createElement("td");
+        actionsTd.className = "actions";
+
+        const editBtn = document.createElement("button");
+        editBtn.textContent = "Edit";
+        editBtn.className = "btn-ghost";
+        editBtn.addEventListener("click", () => startEdit(client.id));
+
+        const deleteBtn = document.createElement("button");
+        deleteBtn.textContent = "Delete";
+        deleteBtn.className = "btn-ghost";
+        deleteBtn.addEventListener("click", () => deleteClient(client.id));
+
+        actionsTd.appendChild(editBtn);
+        actionsTd.appendChild(deleteBtn);
+
+        row.appendChild(actionsTd);
+        tableBody.appendChild(row);
+      });
+    }
+
+    // ---------- EDIT ----------
+    function startEdit(id) {
+      const client = clients.find(c => c.id === id);
+      if (!client) return;
+      editingId = id;
+
+      document.getElementById("workDate").value = client.workDate || "";
+      document.getElementById("sourceApp").value = client.sourceApp || "";
+      document.getElementById("clientName").value = client.clientName || "";
+      document.getElementById("clientAge").value = client.clientAge || "";
+      document.getElementById("clientJob").value = client.clientJob || "";
+      document.getElementById("meetDate").value = client.meetDate || "";
+      document.getElementById("rating").value = client.rating || "";
+      document.getElementById("completed").checked = !!client.completed;
+      document.getElementById("notes").value = client.notes || "";
+      photoInput.value = ""; // keep old photo unless new chosen
+      submitBtn.textContent = "Save changes";
+    }
+
+    function deleteClient(id) {
+      if (!confirm("Delete this client?")) return;
+      clients = clients.filter(c => c.id !== id);
+      saveClients();
+      renderTable();
+    }
+
+    // ---------- FORM SUBMIT ----------
+    form.addEventListener("submit", function (e) {
+      e.preventDefault();
+
+      const data = {
+        workDate: document.getElementById("workDate").value,
+        sourceApp: document.getElementById("sourceApp").value,
+        clientName: document.getElementById("clientName").value,
+        clientAge: document.getElementById("clientAge").value,
+        clientJob: document.getElementById("clientJob").value,
+        meetDate: document.getElementById("meetDate").value,
+        rating: document.getElementById("rating").value,
+        completed: document.getElementById("completed").checked,
+        notes: document.getElementById("notes").value
+      };
+
+      const handleSave = (photoData) => {
+        data.photo = photoData || "";
+
+        if (editingId) {
+          const idx = clients.findIndex(c => c.id === editingId);
+          if (idx !== -1) {
+            // keep old photo if no new one selected
+            if (!data.photo && clients[idx].photo) {
+              data.photo = clients[idx].photo;
+            }
+            data.id = editingId;
+            clients[idx] = data;
+          }
+        } else {
+          data.id = Date.now();
+          clients.push(data);
+        }
+
+        saveClients();
+        renderTable();
+
+        const today = workDateInput.value;
+        form.reset();
+        workDateInput.value = today;
+        editingId = null;
+        submitBtn.textContent = "Add to list";
+      };
+
+      const file = photoInput.files[0];
+      if (file) {
+        const reader = new FileReader();
+        reader.onload = (evt) => handleSave(evt.target.result);
+        reader.readAsDataURL(file);
+      } else {
+        handleSave("");
+      }
+    });
+
+    // ---------- SEARCH / FILTER ----------
+    searchInput.addEventListener("input", renderTable);
+    filterApp.addEventListener("change", renderTable);
+
+    // ---------- INIT ----------
+    workDateInput.value = new Date().toISOString().slice(0, 10);
+    renderTable();
+    checkLock();
+  </script>
+</body>
+</html>
 # Auto detect text files and perform LF normalization
 * text=auto
